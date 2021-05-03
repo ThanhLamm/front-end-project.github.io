@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"start": "npx json-server --watch db/Students.json",
+    "start": "json-server --watch db/Students.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
 }
