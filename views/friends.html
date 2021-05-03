@@ -1,0 +1,36 @@
+<div class="row" style="min-height: 700px;" ng-show="!isLogin">
+    <h1 style="margin: auto;">ĐĂNG NHẬP ĐỂ SỬ DỤNG CHỨC NĂNG NÀY</h1>
+</div>
+<section class="page-section bg-light" id="gioithieu" style="min-height: 700px;" ng-show="isLogin">
+    <div class="container">
+        <div class="row">
+            <h1 style="margin: auto; text-decoration: underline;">BẢNG ĐIỂM CỦA NGƯỜI KHÁC</h1>
+        </div>
+        <div class="row mt-5" style="padding-bottom: 30px;" ng-repeat="item in friends"
+            ng-show="!(item.id==userOld.id)">
+            <!-- <p>{{item.id}} : {{userOld.id}}</p> -->
+            <div class="col-12">
+                <h5><span style="text-decoration: underline;">Sinh viên:</span> {{item.fullname}}</h5>
+            </div>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Môn học</th>
+                        <th>Điểm</th>
+                        <th>Ngày thi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in item.marks">
+                        <td>{{$index}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.mark}}</td>
+                        <td>{{i.date | date : 'dd-MM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="#!user" class="btn btn-link"><i class="fas fa-long-arrow-alt-left"></i> Trở lại</a>
+    </div>
+</section>

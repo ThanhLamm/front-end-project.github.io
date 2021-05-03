@@ -1,0 +1,68 @@
+<div class="row" style="min-height: 700px;" ng-show="!isLogin">
+    <h1 style="margin: auto;">ĐĂNG NHẬP ĐỂ SỬ DỤNG CHỨC NĂNG NÀY</h1>
+</div>
+<section class="page-section bg-light" style="min-height: 700px;" ng-show="isLogin">
+    <div class="container">
+        <div class="row" ng-show="!inProgess">
+            <div class="col text-center">
+                <button ng-click="start()" class="btn btn-primary" style="padding: 10px 25px; font-family: Arial, Helvetica, sans-serif;">Bắt đầu bài làm</button>
+            </div>
+        </div>
+        <div class="row mt-3" ng-show="quizOver">
+            <div class="col text-center">
+                <h3>Hoàn thành bài thi</h3>
+                <h5>{{score}}/10</h5>
+                <h4 ng-if="score<5" style="font-size: 16px; color: red;">Không đạt</h4>
+                <h4 ng-if="score>=5" style="font-size: 16px; color: #55ff55;">Đạt</h4> <br>
+                <button ng-click="start()" class="btn btn-primary" style="padding: 10px 25px; font-family: Arial, Helvetica, sans-serif;">Làm lại</button>
+                <a href="#!subjects" class="btn btn-primary" style="padding: 10px 25px; font-family: Arial, Helvetica, sans-serif;">Danh sách môn</a>
+                <br>
+                <br>
+                <a href="#!user" ng-click="saveKQ()" class="btn btn-danger" style="padding: 10px 25px; font-family: Arial, Helvetica, sans-serif;">Lưu kết quả</a>
+            </div>
+        </div>
+        <div class="m-0 p-0" ng-show="!quizOver">
+            <div class="row" style="margin: 30px 0;" ng-show="inProgess">
+                <div class="col-12 text-center">
+                    <h2>                        
+                        <i class="far fa-clock" style="color: #23B5E1;"></i>
+                        {{countDown | secondsToDateTime | date:'mm:ss'}}
+                    </h2>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary float-right" ng-click="stop()">Kết thúc</button>
+                </div>
+            </div>
+            <div class="row" ng-show="inProgess">
+                <div class="col">
+                    <div class="card border-info">
+                        <div class="card-header" style="background-color: #23B5E1;">
+                            <img src="images/JAAV.png" width="30px" class="border border-primary">
+                            <span style="color: white;" ng-bind="subjectName"></span>
+                            <span class="float-right badge badge-dark p-2">{{id}}/10</span>
+                        </div>
+                        <div class="card-body">
+                            <p ng-bind="question"></p>
+                            <hr>
+                            <div class="form-check" ng-repeat="item in options">
+                                <label for="{{item.Id}}">
+                                    <input type="radio" class="form-check-input" name="answer" id="{{item.Id}}" value="{{item.Id}}">{{item.Text}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary mr-2" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+                            <span ng-show="check">Vui lòng chọn câu trả lời!</span>
+                            <span class="m-0 p-0" ng-show="!answerMode">
+                                <button class="btn btn-primary mr-2" ng-click="nextQuestion()">Next</button>
+                                <span ng-show="correct">Chúc mừng! Bạn đã đúng!</span>
+                                <span ng-show="!correct">Rất tiếc! Bạn đã sai!</span>
+                            </span>                        
+                            <span class="badge badge-success p-2" style="margin-left: 15px;">Điểm {{score}}/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</section>

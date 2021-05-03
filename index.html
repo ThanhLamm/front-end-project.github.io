@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Tôi tự học</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.svg" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top" ng-app="myapp" ng-controller="userCtrl">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="images/favicon.png" alt="" /> Tôi tự
+                học</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars ml-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#!about">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#!subjects">Khoá học</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
+                            Tài khoản</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#!user" ng-show="isLogin">Thông tin cá nhân</a>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#login" ng-show="!isLogin">Đăng nhập</a>
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#register" ng-show="!isLogin">Đăng kí</a>
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#forgotPassword" ng-show="!isLogin">Quên mật
+                                khẩu</a>
+                            <div class="dropdown-divider" ng-show="isLogin"></div>
+                            <a class="dropdown-item" href="" ng-click="logout()" ng-show="isLogin">Đăng xuất</a>
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#changePassword" ng-show="isLogin">Đổi mật khẩu</a>
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#editProfile" ng-show="isLogin">Chỉnh
+                                sửa thông tin</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#!faq">Góp ý</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Chào mừng đến với lớp học lập trình</div>
+            <div class="masthead-heading text-uppercase">Chúc bạn có những buổi học tốt</div>
+            <section>
+                <a href="#start" class="button js-scroll-trigger" style="text-decoration: none;">Bắt đầu</a>
+            </section>
+        </div>
+    </header>
+    <!-- Portfolio Grid-->
+    <div ng-show="loading" class="pull-right label label-info row col" style="min-height: 700px !important;">
+        <!-- <div class="loader"></div> -->
+        <div class="spinner-border" role="status" style="margin: auto; width: 6em;height: 6em; border: 0.7em solid black currentColor;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="m-0 p-0" id="start" ng-view>
+    </div>
+    <!-- Footer-->
+    <footer class="footer m-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-left">
+                    <p style="margin-bottom: 0px;">Bản quyền thuộc về Tôi Tự Học</p>
+                    <p>Chịu trách nhiệm nội dung: Thanh Lam</p>
+                </div>
+                <div class="col-lg-4 offset-4 text-lg-right">
+                    <a class="mr-3" href="">Privacy Policy</a>
+                    <a href="">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Modal -->
+    <div>
+        <!-- chinh sua thong tin ca nhan -->
+        <div class="modal fade" id="editProfile" role="dialog" style=" background-image: url(images/BG.jpg);">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title ">CẬP NHẬT TÀI KHOẢN
+                        </h4>
+                    </div>
+                    <div>
+                        <form name="frmEditInfo">
+                            <div class="row ml-0 mr-0 card ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="name">Họ Và Tên</label> <br>
+                                                <small><i>Tên cũ: {{user.fullname}}</i></small>
+                                                <input id="name" class="form-control" type="text" name="name" ng-model="editName" required>
+                                                <small ng-show="frmEditInfo.name.$invalid"><i>Họ tên không được để trống</i></small>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="birthdate">Ngày Sinh</label> <br>
+                                                <small><i>Ngày sinh cũ: {{user.birthday | date : 'dd-MM-yyyy'}}</i></small>
+                                                <input id="birthdate" class="form-control" type="date" name="birthdate" ng-model="editBirthDate" required>
+                                                <small ng-show="frmEditInfo.birthdate.$invalid"><i>Ngày sinh không được để trống</i></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="editGender">Giới Tính</label> <br>
+                                                <small><i>Giới tính cũ: {{user.gender ? 'Nam' : 'Nữ'}}</i></small>
+                                                <select id="editGender" ng-model="editGender" class="form-control" name="editGender" required>
+                                                    <option value="true">Nam</option>
+                                                    <option value="false">Nữ</option>
+                                                </select>
+                                                <small ng-show="frmEditInfo.editGender.$invalid"><i>Hãy chọn giới tính</i></small>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="email">Email</label> <br>
+                                                <small><i>Email cũ: {{user.email}}</i></small>
+                                                <input id="email" class="form-control" type="email" name="email" ng-model="editEmail" required>
+                                                <small ng-show="frmEditInfo.email.$invalid"><i>Email không đúng định dạng</i></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="editCountry">Địa Chỉ</label> <br>
+                                                <small><i>Địa chỉ cũ: {{user.country}}</i></small>
+                                                <input type="text" id="editCountry" class="form-control" name="editCountry" ng-model="editCountry" required>
+                                                <small ng-show="frmEditInfo.editCountry.$invalid"><i>Địa chỉ không được để trống</i></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <button class="btn btn-outline-primary mr-2" ng-show="!frmEditInfo.$invalid" ng-click="editProfile()">CHỈNH SỬA</button>
+                                        <button class="btn btn-outline-danger" data-dismiss="modal">HUỶ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- dang nhap -->
+        <div class="modal fade" id="login" role="dialog" style=" background-image: url(images/BG.jpg);">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="margin-top: 100px !important;">
+                    <div>
+                        <form>
+                            <div class="row ml-0 mr-0 card ">
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 30px;">
+                                        <div class="text-center col-6" style="margin-top: 80px;">
+                                            <img src="images/user.png"
+                                                style="border-radius: 50%; background-color: rgba(236, 233, 233, 0.596); box-shadow: 0 3px 9px rgba(0, 0, 0,0.2);"
+                                                class="img-fluid p-5">
+                                        </div>
+                                        <div class="col-6">
+                                            <form class="form-group">
+                                                <h1 class="text-center" style="font-weight: bold;">Đăng nhập</h1>
+                                                <br> <br>
+                                                <input type="text" name="" id="" class="form-control mb-3"
+                                                    placeholder="Tên đăng nhập" style="border-radius: 15px; padding: 22px;" ng-model="username">
+                                                <input type="password" name="" id="myPass" class="form-control"
+                                                    placeholder="Mật khẩu" style="border-radius: 15px; padding: 22px;" ng-model="password">
+                                                <div class="mt-2 ml-2" style="font-size: 14px;font-family: inherit;color: rgba(68, 68, 68, 0.801);">
+                                                    <input type="checkbox" onclick="hidePass()" id="hide"> <label for="hide">Hiển thị mật khẩu</label>
+                                                </div>
+                                                <div class="row">
+                                                    <a type="button" class="btn btn-link mt-1 mb-3 col-6"
+                                                        style="color: rgb(128, 187, 255);" data-toggle="modal"
+                                                        data-target="#forgotPassword">Quên mật khẩu?</a>
+                                                    <a type="button" class="btn btn-link mt-1 mb-3 col-6"
+                                                        style="color: rgb(128, 187, 255);" data-toggle="modal"
+                                                        data-target="#register">Tạo tài khoản</a>
+                                                </div>
+                                                <div class="row m-0 p-0">
+                                                    <button class="btn btn-success col"
+                                                        style="border-radius: 15px; padding: 8px 14px 8px 14px;" ng-click="login()">Đăng
+                                                        nhập</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- dang ki -->
+        <div class="modal fade" id="register" role="dialog" style=" background-image: url(images/BG.jpg);">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title ">ĐĂNG KÝ</h4>
+                    </div>
+                    <form name="frmReg">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="namedk">Họ Và Tên</label>
+                                        <input id="namedk" class="form-control" type="text" name="namedk" ng-model="namedk" required>
+                                        <small ng-show="frmReg.namedk.$invalid"><i>Họ tên không được để trống</i></small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="birthdatedk">Ngày Sinh</label>
+                                        <input id="birthdatedk" class="form-control" type="date" name="birthdatedk" ng-model="birthdatedk" required>
+                                        <small ng-show="frmReg.birthdatedk.$invalid"><i>Ngày sinh không được để trống</i></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="countrydk">Địa Chỉ</label>
+                                        <input type="text" id="countrydk" class="form-control" name="countrydk" ng-model="countrydk" required>
+                                        <small ng-show="frmReg.countrydk.$invalid"><i>Địa chỉ không được để trống</i></small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="genderdk">Giới Tính</label>
+                                        <select id="genderdk" ng-model="genderdk" class="form-control" name="genderdk" required>
+                                            <option value="true">Nam</option>
+                                            <option value="false">Nữ</option>
+                                        </select>
+                                        <small ng-show="frmReg.genderdk.$invalid"><i>Hãy chọn giới tính</i></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="usernamedk">Tên Đăng Nhập</label>
+                                        <input id="usernamedk" class="form-control" type="text" name="usernamedk" ng-model="usernamedk" required>
+                                        <small ng-show="frmReg.usernamedk.$invalid"><i>Tên đăng nhập không được để trống</i></small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="emaildk">Email</label>
+                                        <input id="emaildk" class="form-control" type="email" name="emaildk" ng-model="emaildk" required>
+                                        <small ng-show="frmReg.emaildk.$invalid"><i>Email không được để trống</i></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="passworddk">Mật Khẩu</label>
+                                        <input id="passworddk" class="form-control" type="password" name="passworddk" ng-model="passworddk" required>
+                                        <small ng-show="frmReg.passworddk.$invalid"><i>Mật khẩu không được để trống</i></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <button class="btn btn-outline-primary" ng-show="!frmReg.$invalid" ng-click="register()">ĐĂNG KÍ</button>
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">HUỶ</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- quen mat khau -->
+        <div class="modal fade" id="forgotPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            style="background-image: url(images/BG.jpg);">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title logos" id="exampleModalLabel">
+                            QUÊN MẬT KHẨU</h3>
+                    </div>
+                    <div class="modal-body ">
+                        <form name="frmForgot">
+                            <div class="form-group">
+                                <label for="usernameqmk">Tên đăng nhập</label>
+                                <input type="text" name="usernameqmk" id="usernameqmk" class="form-control" ng-model="usernameqmk"
+                                    aria-describedby="helpId" required>
+                                <small ng-show="frmForgot.usernameqmk.$invalid"><i>Tên đăng nhập không được để trống</i></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailqmk">Địa chỉ Email</label>
+                                <input type="email" name="emailqmk" id="emailqmk" class="form-control" ng-model="emailqmk"
+                                    aria-describedby="helpId" required>
+                                <small ng-show="frmForgot.emailqmk.$invalid"><i>Email không được để trống</i></small>
+                            </div>
+                            <hr>
+                            <div>
+                                <button class="btn btn-outline-info" ng-show="!frmForgot.$invalid" ng-click="forgotPassword()">GỬI</button>
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">HUỶ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- doi mat khau -->
+        <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            style="background-image: url(images/BG.jpg);">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h3 class="modal-title logos" id="exampleModalLabel">
+                            ĐỔI MẬT KHẨU</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frmDMK">
+                            <div class="form-group">
+                                <label for="usernamedmk">Tên Đăng Nhập</label>
+                                <input type="text" name="usernamedmk" ng-model="user.username" id="usernamedmk" readonly class="form-control" required
+                                    aria-describedby="helpId">
+                                <small ng-show="frmDMK.usernamedmk.$invalid">Tên đăng nhập không được để trống</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="matkhaudmk">Mật Khẩu Hiện Tại</label>
+                                <input type="password" name="matkhaudmk" ng-model="matkhaudmk" id="matkhaudmk" class="form-control" aria-describedby="helpId" required>
+                                <small ng-show="frmDMK.matkhaudmk.$invalid">Mật khẩu hiện tại không được để trống</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="matkhaumoidmk">Mật Khẩu Mới</label>
+                                <input type="password" name="matkhaumoidmk" ng-model="matkhaumoidmk" required id="matkhaumoidmk" class="form-control" aria-describedby="helpId">
+                                <small ng-show="frmDMK.matkhaumoidmk.$invalid">Mật khẩu mới không được để trống</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="xacnhanmkdmk">Xác Nhận Mật Khẩu</label>
+                                <input type="password" name="xacnhanmkdmk" ng-model="xacnhanmkdmk" required id="xacnhanmkdmk" class="form-control" aria-describedby="helpId">
+                                <small ng-show="frmDMK.xacnhanmkdmk.$invalid">Mật khẩu xác nhận không được để trống</small>
+                            </div>
+                            <hr>
+                            <div>
+                                <button class="btn btn-outline-primary" ng-show="!frmDMK.$invalid" ng-click="changePassword()">Đổi Mật Khẩu</button>
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+    
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+    <!-- AngularJs -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script src="js/myApp.js"></script>
+    <!-- Portfolio Modals-->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!-- Contact form JS-->
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

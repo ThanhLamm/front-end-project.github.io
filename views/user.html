@@ -1,0 +1,65 @@
+<div class="row" style="min-height: 700px;" ng-show="!isLogin">
+    <h1 style="margin: auto;">ĐĂNG NHẬP ĐỂ SỬ DỤNG CHỨC NĂNG NÀY</h1>
+</div>
+<section class="page-section bg-light" id="user" style="min-height: 700px;padding: 4rem 0 0 0;" ng-show="isLogin">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <img src="images/user.png" width="100px"
+                    style="border-radius: 50%; background-color: rgba(236, 233, 233, 0.596); box-shadow: 0 3px 9px rgba(0, 0, 0,0.2);"
+                    class="img-fluid p-3 mb-3">
+                <h4>Hello, {{user.fullname}}</h4>
+            </div>
+            <hr>
+            <div class="col-5 mt-3">
+                <label style="font-weight: bold;">Họ và tên:</label>
+                <div class="form-control" style="border: none;">{{user.fullname}}</div>
+            </div>
+            <div class="col-5 offset-2 mt-3">
+                <label style="font-weight: bold;">Tên đăng nhập:</label>
+                <div class="form-control" style="border: none;">{{user.username}}</div>
+            </div>
+            <div class="col-5 mt-4">
+                <label style="font-weight: bold;">Giới tính:</label>
+                <div class="form-control" style="border: none;">{{user.gender ? 'Nam' : 'Nữ'}}</div>
+            </div>
+            <div class="col-5 offset-2 mt-4">
+                <label style="font-weight: bold;">Email:</label>
+                <div class="form-control" style="border: none;">{{user.email}}</div>
+            </div>
+            <div class="col-5 mt-4">
+                <label style="font-weight: bold;">Ngày sinh:</label>
+                <div class="form-control" style="border: none;">{{user.birthday | date : 'dd-MM-yyyy'}}</div>
+            </div>
+            <div class="col-5 offset-2 mt-4">
+                <label for="">Địa chỉ:</label>
+                <div class="form-control" style="border: none;">{{user.country}}</div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-5" style="padding-bottom: 30px;">
+            <div class="col-12 text-center">
+                <h5 style="text-decoration: underline;">Bảng điểm</h5>
+            </div>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Môn học</th>
+                        <th>Điểm</th>
+                        <th>Ngày thi</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="item in marks">
+                    <tr ng-show="$index>=0">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.mark}}</td>
+                        <td>{{item.date | date : 'dd-MM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#!friend" class="btn btn-link">Xem bảng điểm của người khác <i class="fas fa-long-arrow-alt-right"></i></a>
+        </div>
+    </div>
+</section>
