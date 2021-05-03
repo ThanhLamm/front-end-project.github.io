@@ -183,7 +183,7 @@ app.controller("quizCtrl", function($scope, $quizFactory, $routeParams, $interva
             marks: marks,
             id: user.id
         }
-        $http.put('http://localhost:3000/listStudents/'+user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents'+user.id, data).then(function(res){
             // console.log('done')
             $cookies.putObject('user', data, 24*60*60);
             alert('Lưu thành công !');
@@ -250,7 +250,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
         $scope.isLogin = true;
     }
     $scope.login = function() {
-        $http.get('http://localhost:3000/listStudents').then(function(res){
+        $http.get('https://lamnht-app.herokuapp.com/listStudents').then(function(res){
             listData = res.data;
             // console.log(listData)
             for(var i = 0; i < listData.length; i++) {
@@ -273,7 +273,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
     }
 
     $scope.register = function(even) {
-        $http.get('http://localhost:3000/listStudents').then(function(res){
+        $http.get('https://lamnht-app.herokuapp.com/listStudents').then(function(res){
             listData = res.data;
             for(var i = 0; i < listData.length; i++) {
                 if(listData[i].username == $scope.usernamedk) {
@@ -296,7 +296,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
                 marks: []
             }
             // console.log(data)
-            $http.post('http://localhost:3000/listStudents', data).then(function(res){
+            $http.post('https://lamnht-app.herokuapp.com/listStudents', data).then(function(res){
                 // console.log('done')
                 alert('Đăng kí thành công !');
                 window.location.href = "index.html";
@@ -307,7 +307,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
     }
 
     $scope.forgotPassword = function() {
-        $http.get('http://localhost:3000/listStudents').then(function(res){
+        $http.get('https://lamnht-app.herokuapp.com/listStudents').then(function(res){
             listData = res.data;
             for(var i = 0; i < listData.length; i++) {
                 if(listData[i].username == $scope.usernameqmk && listData[i].email == $scope.emailqmk) {
@@ -334,7 +334,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             marks: $scope.user.marks,
             id: $scope.user.id
         }
-        $http.put('http://localhost:3000/listStudents/'+$scope.user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents'+$scope.user.id, data).then(function(res){
             // console.log('done')
             alert('Cập nhật thành công !');
             $cookies.putObject('user', data, 24*60*60);
@@ -366,7 +366,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             marks: $scope.user.marks,
             id: $scope.user.id
         }
-        $http.put('http://localhost:3000/listStudents/'+$scope.user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents'+$scope.user.id, data).then(function(res){
             // console.log('done')
             alert('Đổi mật khẩu thành công !');
             $cookies.putObject('user', data, 24*60*60);
@@ -380,7 +380,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
 
 app.controller('friendsCtrl', function($scope, $cookies, $http) {
     $scope.userOld = $cookies.getObject('user');
-    $http.get('http://localhost:3000/listStudents').then(function(res){
+    $http.get('https://lamnht-app.herokuapp.com/listStudents').then(function(res){
         $scope.friends = res.data;
     })
 })
