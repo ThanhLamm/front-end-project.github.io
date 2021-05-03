@@ -297,7 +297,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
                 marks: []
             }
             // console.log(data)
-            $http.post('https:/lamnht-app.herokuapp.com/listStudents', data).then(function(res){
+            $http.post('https://lamnht-app.herokuapp.com/listStudents', data).then(function(res){
                 // console.log('done')
                 alert('Đăng kí thành công !');
                 window.location.href = "index.html";
