@@ -274,7 +274,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
     }
 
     $scope.register = function(even) {
-        $http.get('https:/lamnht-app.herokuapp.com/listStudents').then(function(res){
+        $http.get('https://lamnht-app.herokuapp.com/listStudents').then(function(res){
             listData = res.data;
             for(var i = 0; i < listData.length; i++) {
                 if(listData[i].username == $scope.usernamedk) {
