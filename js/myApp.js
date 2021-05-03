@@ -187,7 +187,7 @@ app.controller("quizCtrl", function($scope, $quizFactory, $routeParams, $interva
             // console.log('done')
             $cookies.putObject('user', data, 24*60*60);
             alert('Lưu thành công !');
-            // window.location.href = "index.html";
+            window.location.href = "index.html";
             // alert('Đăng nhập lại để cập nhật hoàn tất !');
             // $scope.logout();
         }), function(error) {
@@ -339,6 +339,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             // console.log('done')
             alert('Cập nhật thành công !');
             $cookies.putObject('user', data, 24*60*60);
+            window.location.href = "index.html";
             // alert('Đăng nhập lại để cập nhật hoàn tất !');
             // $scope.logout();
         }), function(error) {
@@ -371,6 +372,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             // console.log('done')
             alert('Đổi mật khẩu thành công !');
             $cookies.putObject('user', data, 24*60*60);
+            window.location.href = "index.html";
             // alert('Đăng nhập lại để cập nhật hoàn tất !');
             // $scope.logout();
         }), function(error) {
