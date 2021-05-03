@@ -183,7 +183,7 @@ app.controller("quizCtrl", function($scope, $quizFactory, $routeParams, $interva
             marks: marks,
             id: user.id
         }
-        $http.put('https://lamnht-app.herokuapp.com/listStudents'+user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents/'+user.id, data).then(function(res){
             // console.log('done')
             $cookies.putObject('user', data, 24*60*60);
             alert('Lưu thành công !');
@@ -335,7 +335,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             marks: $scope.user.marks,
             id: $scope.user.id
         }
-        $http.put('https://lamnht-app.herokuapp.com/listStudents'+$scope.user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents/'+$scope.user.id, data).then(function(res){
             // console.log('done')
             alert('Cập nhật thành công !');
             $cookies.putObject('user', data, 24*60*60);
@@ -367,7 +367,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
             marks: $scope.user.marks,
             id: $scope.user.id
         }
-        $http.put('https://lamnht-app.herokuapp.com/listStudents'+$scope.user.id, data).then(function(res){
+        $http.put('https://lamnht-app.herokuapp.com/listStudents/'+$scope.user.id, data).then(function(res){
             // console.log('done')
             alert('Đổi mật khẩu thành công !');
             $cookies.putObject('user', data, 24*60*60);
