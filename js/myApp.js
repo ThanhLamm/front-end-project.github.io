@@ -258,6 +258,7 @@ app.controller("userCtrl", function($scope, $cookies, $http){
                     // console.log('done login')
                     $scope.isLogin = true;
                     $cookies.putObject('user', listData[i], 24*60*60);
+                    alert("Đăng nhập thành công !")
                     window.location.href = "index.html";
                     return;
                 } else {
