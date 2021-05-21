@@ -3,12 +3,12 @@
     {
       "username": "thanhlam",
       "password": "123",
-      "fullname": "NGUYỄN MẠNH LÂN",
+      "fullname": "Nguyễn Hữu Thanh Lam",
       "email": "tanh@gmail.com",
       "gender": "false",
       "birthday": "2000-10-09T17:00:00.000Z",
       "schoolfee": "1",
-      "country": "Quảng Triii",
+      "country": "Thừa Thiên Huế",
       "marks": [
         {
           "name": "Lap trinh",
