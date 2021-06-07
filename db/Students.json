@@ -137,7 +137,7 @@
     },
     {
       "username": "lamngu",
-      "password": "123",
+      "password": "1234",
       "fullname": "Đồng đẹp trai",
       "email": "lamngu@gmail.com",
       "gender": "true",
@@ -152,19 +152,6 @@
         }
       ],
       "id": 6
-    },
-    {
-      "username": "sds",
-      "password": "sd",
-      "fullname": "412412",
-      "email": "dfd@da.sf",
-      "gender": "true",
-      "birthday": "2422-03-21T17:00:00.000Z",
-      "schoolfee": 0,
-      "country": "213",
-      "marks": [],
-      "createdAt": 1623033566530,
-      "id": 7
     }
   ]
 }
